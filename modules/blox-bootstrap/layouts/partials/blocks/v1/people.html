@@ -1,4 +1,4 @@
-{{/* Hugo Blox: People */}}
+ {{/* Hugo Blox: People */}}
 {{/* Documentation: https://hugoblox.com/blocks/ */}}
 {{/* License: https://github.com/HugoBlox/hugo-blox-builder/blob/main/LICENSE.md */}}
 
@@ -44,8 +44,12 @@
   {{ $avatar := (.Resources.ByType "image").GetMatch "*avatar*" }}
   {{/* Get link to user's profile page. */}}
   {{ $link := "" }}
+  {{ $external_link := .Params.external_link }}
   {{ with site.GetPage (printf "/authors/%s" (path.Base .File.Dir)) }}
     {{ $link = .RelPermalink }}
+  {{ end }}
+  {{ with $external_link }}
+    {{ $link = $external_link }}
   {{ end }}
   <div class="col-12 col-sm-auto people-person">
     {{ $src := "" }}
